@@ -25,7 +25,7 @@ public class PlotterControlsManager {
      * This method changes data injected into actual IPlotter to change its behaviour.
      */
     public void moveDownWindow() {
-        newPlotter = new MovePlotterDecorator(application.getDriverManager().getCurrentPlotter(), "moveDown");
+        newPlotter = new TransformPlotterDecorator(application.getDriverManager().getCurrentPlotter(), "moveDown", new MoveTransform(0, 10));
         application.getDriverManager().setCurrentPlotter(newPlotter);
         DrawerFeature.getDrawerController().clearPanel();
         commandHistory();
@@ -35,7 +35,7 @@ public class PlotterControlsManager {
      * This method changes data injected into actual IPlotter to change its behaviour.
      */
     public void moveUpWindow() {
-        newPlotter = new MovePlotterDecorator(application.getDriverManager().getCurrentPlotter(), "moveUp");
+    	newPlotter = new TransformPlotterDecorator(application.getDriverManager().getCurrentPlotter(), "moveUp", new MoveTransform(0, -10));
         application.getDriverManager().setCurrentPlotter(newPlotter);
         DrawerFeature.getDrawerController().clearPanel();
         commandHistory();
@@ -45,7 +45,7 @@ public class PlotterControlsManager {
      * This method changes data injected into actual IPlotter to change its behaviour.
      */
     public void moveLeftWindow() {
-        newPlotter = new MovePlotterDecorator(application.getDriverManager().getCurrentPlotter(), "moveLeft");
+    	newPlotter = new TransformPlotterDecorator(application.getDriverManager().getCurrentPlotter(), "moveLeft", new MoveTransform(-10, 0));
         application.getDriverManager().setCurrentPlotter(newPlotter);
         DrawerFeature.getDrawerController().clearPanel();
         commandHistory();
@@ -55,7 +55,7 @@ public class PlotterControlsManager {
      * This method changes data injected into actual IPlotter to change its behaviour.
      */
     public void moveRightWindow() {
-        newPlotter = new MovePlotterDecorator(application.getDriverManager().getCurrentPlotter(), "moveRight");
+    	newPlotter = new TransformPlotterDecorator(application.getDriverManager().getCurrentPlotter(), "moveRight", new MoveTransform(10, 0));
         application.getDriverManager().setCurrentPlotter(newPlotter);
         DrawerFeature.getDrawerController().clearPanel();
         commandHistory();
@@ -65,7 +65,7 @@ public class PlotterControlsManager {
      * This method changes data injected into actual IPlotter to change its behaviour.
      */
     public void flipHorizontalWindow() {
-        newPlotter = new FlipPlotterDecorator(application.getDriverManager().getCurrentPlotter(), "flipHorizontal");
+        newPlotter = new TransformPlotterDecorator(application.getDriverManager().getCurrentPlotter(), "flipHorizontal", new ScaleTransform(1, -1));
         application.getDriverManager().setCurrentPlotter(newPlotter);
         DrawerFeature.getDrawerController().clearPanel();
         commandHistory();
@@ -75,7 +75,7 @@ public class PlotterControlsManager {
      * This method changes data injected into actual IPlotter to change its behaviour.
      */
     public void flipVerticalWindow() {
-        newPlotter = new FlipPlotterDecorator(application.getDriverManager().getCurrentPlotter(), "flipVertical");
+        newPlotter = new TransformPlotterDecorator(application.getDriverManager().getCurrentPlotter(), "flipVertical", new ScaleTransform(-1, 1));
         application.getDriverManager().setCurrentPlotter(newPlotter);
         DrawerFeature.getDrawerController().clearPanel();
         commandHistory();
@@ -85,7 +85,7 @@ public class PlotterControlsManager {
      * This method changes data injected into actual IPlotter to change its behaviour.
      */
     public void rotateRightWindow() {
-        newPlotter = new RotatePlotterDecorator(application.getDriverManager().getCurrentPlotter(), "rotateRight");
+        newPlotter = new TransformPlotterDecorator(application.getDriverManager().getCurrentPlotter(), "rotateRight", new RotateTransform(45));
         application.getDriverManager().setCurrentPlotter(newPlotter);
         DrawerFeature.getDrawerController().clearPanel();
         commandHistory();
@@ -95,7 +95,7 @@ public class PlotterControlsManager {
      * This method changes data injected into actual IPlotter to change its behaviour.
      */
     public void rotateLeftWindow() {
-        newPlotter = new RotatePlotterDecorator(application.getDriverManager().getCurrentPlotter(), "rotateLeft");
+        newPlotter = new TransformPlotterDecorator(application.getDriverManager().getCurrentPlotter(), "rotateLeft", new RotateTransform(-45));
         application.getDriverManager().setCurrentPlotter(newPlotter);
         DrawerFeature.getDrawerController().clearPanel();
         commandHistory();
@@ -105,8 +105,8 @@ public class PlotterControlsManager {
      * This method changes data injected into actual IPlotter to change its behaviour.
      */
     public void zoomOutWindow() {
-        newPlotter = new ZoomPlotterDecorator(application.getDriverManager().getCurrentPlotter(), "zoomOut");
-        application.getDriverManager().setCurrentPlotter(newPlotter);
+    	newPlotter = new TransformPlotterDecorator(application.getDriverManager().getCurrentPlotter(), "zoomOut", new ScaleTransform(0.5f, 0.5f));
+    	application.getDriverManager().setCurrentPlotter(newPlotter);
         DrawerFeature.getDrawerController().clearPanel();
         commandHistory();
     }
@@ -115,8 +115,8 @@ public class PlotterControlsManager {
      * This method changes data injected into actual IPlotter to change its behaviour.
      */
     public void zoomInWindow() {
-        newPlotter = new ZoomPlotterDecorator(application.getDriverManager().getCurrentPlotter(), "zoomIn");
-        application.getDriverManager().setCurrentPlotter(newPlotter);
+    	newPlotter = new TransformPlotterDecorator(application.getDriverManager().getCurrentPlotter(), "zoomOut", new ScaleTransform(2, 2));
+    	application.getDriverManager().setCurrentPlotter(newPlotter);
         DrawerFeature.getDrawerController().clearPanel();
         commandHistory();
     }
